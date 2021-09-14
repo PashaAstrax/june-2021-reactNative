@@ -4,7 +4,9 @@ import {View, Text, Button, TouchableOpacity} from 'react-native';
 import {getUsers} from "../services/api.service";
 import User from "./User";
 
-const Users = () => {
+const Users = (props) => {
+    let {navigation} = props;
+
     let [user, setUser] = useState();
 
     useEffect(() => {
@@ -14,7 +16,7 @@ const Users = () => {
   return <View style={styles.wrap}>
       <FlatList
           data={user}
-          renderItem={({item}) => <User item={item}/>}
+          renderItem={({item}) => <User item={item} nav={navigation}/>}
           keyExtractor={item => `${item.id}`}
       />
   </View>;
